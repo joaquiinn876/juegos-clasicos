@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Piedra Papel Tijera</title></head>
+<body><h2>Juega Piedra, Papel o Tijera</h2>
+<button onclick="jugar('piedra')">Piedra</button>
+<button onclick="jugar('papel')">Papel</button>
+<button onclick="jugar('tijera')">Tijera</button>
+<p id="resultado"></p>
+<script>
+function jugar(eleccionUsuario) {
+    const opciones = ['piedra', 'papel', 'tijera'];
+    const eleccionIA = opciones[Math.floor(Math.random() * 3)];
+    let resultado = '';
+    if (eleccionUsuario === eleccionIA) resultado = 'Empate!';
+    else if (
+        (eleccionUsuario === 'piedra' && eleccionIA === 'tijera') ||
+        (eleccionUsuario === 'papel' && eleccionIA === 'piedra') ||
+        (eleccionUsuario === 'tijera' && eleccionIA === 'papel')
+    ) resultado = '¡Ganaste!';
+    else resultado = 'Perdiste!';
+    document.getElementById('resultado').innerText = `Elegiste ${eleccionUsuario}, la IA eligió ${eleccionIA}. ${resultado}`;
+}
+</script></body></html>
