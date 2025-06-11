@@ -1,23 +1,76 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>Piedra Papel Tijera</title></head>
-<body><h2>Juega Piedra, Papel o Tijera</h2>
-<button onclick="jugar('piedra')">Piedra</button>
-<button onclick="jugar('papel')">Papel</button>
-<button onclick="jugar('tijera')">Tijera</button>
-<p id="resultado"></p>
-<script>
-function jugar(eleccionUsuario) {
-    const opciones = ['piedra', 'papel', 'tijera'];
-    const eleccionIA = opciones[Math.floor(Math.random() * 3)];
-    let resultado = '';
-    if (eleccionUsuario === eleccionIA) resultado = 'Empate!';
-    else if (
-        (eleccionUsuario === 'piedra' && eleccionIA === 'tijera') ||
-        (eleccionUsuario === 'papel' && eleccionIA === 'piedra') ||
-        (eleccionUsuario === 'tijera' && eleccionIA === 'papel')
-    ) resultado = '¡Ganaste!';
-    else resultado = 'Perdiste!';
-    document.getElementById('resultado').innerText = `Elegiste ${eleccionUsuario}, la IA eligió ${eleccionIA}. ${resultado}`;
-}
-</script></body></html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piedra, Papel o Tijera</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: linear-gradient(135deg, #f0f8ff, #e0eafc);
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      background-color: #4e8cff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #3a6edc;
+    }
+
+    #resultado {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>🕹️ Juega Piedra, Papel o Tijera</h1>
+  <div>
+    <button onclick="jugar('piedra')">🪨 Piedra</button>
+    <button onclick="jugar('papel')">📄 Papel</button>
+    <button onclick="jugar('tijera')">✂️ Tijera</button>
+  </div>
+  <div id="resultado"></div>
+
+  <script>
+    function jugar(eleccionJugador) {
+      const opciones = ['piedra', 'papel', 'tijera'];
+      const eleccionIA = opciones[Math.floor(Math.random() * 3)];
+
+      let resultado = '';
+
+      if (eleccionJugador === eleccionIA) {
+        resultado = '¡Empate!';
+      } else if (
+        (eleccionJugador === 'piedra' && eleccionIA === 'tijera') ||
+        (eleccionJugador === 'papel' && eleccionIA === 'piedra') ||
+        (eleccionJugador === 'tijera' && eleccionIA === 'papel')
+      ) {
+        resultado = '¡Ganaste!';
+      } else {
+        resultado = 'Perdiste...';
+      }
+
+      document.getElementById('resultado').innerHTML =
+        `Elegiste <strong>${eleccionJugador}</strong>, la IA eligió <strong>${eleccionIA}</strong>. <br><strong>${resultado}</strong>`;
+    }
+  </script>
+</body>
+</html>
